@@ -1,0 +1,91 @@
+<!--<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item-top"></div>
+    <img style="width:400px; height:auto;" src="assets/logo.png">
+    <div class="Aligner-item Aligner-item-bottom"></div>
+  </div>
+</div> -->
+
+<ion-header>
+  <ion-navbar color="primary">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title style="margin-top:5px; font-family: 'Hanuman';">សារព័ត៌មានជួយសង្គម</ion-title>
+    <ion-buttons right>
+      <button ion-button (tap)="opencall()">
+        <ion-icon name="call"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <!-- <ion-searchbar
+  [(ngModel)]="searchKeyword"
+  (keyup.enter)="search(searchKeyword, $event)"
+  (ionInput)="onCancel($event)">
+
+  </ion-searchbar> -->
+</ion-header>
+
+
+<ion-content #container style="background-color: #FFF;">
+ 
+<!-- <div class="centered-spinner"><ion-spinner color="primary" name="crescent" *ngIf="loader == 0"></ion-spinner></div> -->
+<div *ngFor="let data of facebooklive">
+<div *ngIf="data.live_status == 'LIVE'"style="white-space: nowrap;">
+<div class="scroll-left" (tap)="openBreaking(data.permalink_url)">
+  <p><span style="color:#FFFFFF; font-weight: bold;">Facebook Live - </span>{{data.description}}</p>
+</div>
+<!-- <ion-card class="card-live">
+    <ion-card-content style="background-color:#00338E; padding-bottom:5px;" (tap)="openBreaking(data.permalink_url)" >
+     
+        <div class="videoContainer">
+          <img [src]="data.picture" alt="">
+          <img src="assets/chsk.png" class="livelogo"/>
+          <img src="assets/button.png" alt="play" class="playBtn">
+       </div>
+    </ion-card-content>
+</ion-card> -->
+</div>
+</div>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content style="font-family: 'Hanuman';"
+      pullingIcon="arrow-dropdown"
+      pullingText="ទាញចុះដើម្បី យកព័ត៌មានចុងក្រោយ"
+      refreshingSpinner="dots"
+      refreshingText ="កំពុងដំណើរការ"
+    ></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-list *ngFor="let data of datas">
+     <ion-card style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <ion-card-content>
+
+     
+          
+          <img style="width: 100%; height: auto;" *ngIf="data.x_featured_media"  (tap)="openSingle(data.id, data.title.rendered)" [defaultImage]="'assets/load.gif'" [lazyLoad]="data.x_featured_media" [scrollObservable]="container.ionScroll"/>
+   
+   <ion-card-title style="line-height: 1.5; font-size:20px;  " color="primary" [innerHTML]="data.title.rendered" (tap)="openSingle(data.id, data.title.rendered)" >{{data.title.rendered}}</ion-card-title>
+  </ion-card-content>
+ <ion-item>   
+    <button ion-button icon-left clear item-start>
+      <ion-icon name="calendar"></ion-icon>
+      {{data.date | moment}}
+    </button>
+    <button ion-button icon-left clear item-end (tap)="share(data.link)">
+        <ion-icon name="md-share"></ion-icon>
+        Share
+      </button>
+  </ion-item>
+  <img src="https://chsknews.com/wp-content/uploads/advertise-here-2.gif"/>
+   </ion-card>
+   
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

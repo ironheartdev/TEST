@@ -1,0 +1,53 @@
+<!--
+  Generated template for the SinglePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+    <ion-navbar color="primary">
+    <ion-title  style="font-family: 'Hanuman';">សារព័ត៌មានជួយសង្គម</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <!-- <div class="centered-spinner"><ion-spinner color="primary" name="crescent" *ngIf="loader == 0"></ion-spinner></div> -->
+  <ion-fab left bottom>
+    <button ion-fab color="vibrant" mini><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button color="primary" (tap)="regularShare()"   ion-fab><ion-icon name="share" ></ion-icon></button>
+      <button color="primary" (tap)="twitterShare()"   ion-fab><ion-icon name="logo-twitter" ></ion-icon></button>
+      <button color="primary" (tap)="whatsappShare()"  ion-fab><ion-icon name="logo-whatsapp"></ion-icon></button>
+      <button color="primary" (tap)="instagramShare()" ion-fab><ion-icon name="logo-instagram"></ion-icon></button>
+      <button color="primary" (tap)="FacebookShare()"  ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+
+    </ion-fab-list>
+  </ion-fab>
+  <ion-card>
+      <div>
+      <div *ngFor="let data of datas">
+    <ion-card-content>
+    <div *ngFor="let adss of ads">
+      <img style="border-bottom: solid 1px;" src="{{adss.img_url}}" (tap)="openads(adss.ads_url)">
+    </div>
+    <ion-card-title text-center color="primary" style="line-height: 1.5; font-family: 'Hanuman'; font-size:25px; border-bottom:solid 1px #7A7A7A;" [innerHTML]="title"></ion-card-title>
+    <div style="border-bottom:solid 1px #7A7A7A;">
+    <button ion-button icon-left clear  block>
+      <ion-icon name="calendar"></ion-icon>
+      {{data.date | moment}}
+    </button>
+  </div>
+    <div style="line-height: 1.4; font-size:15px;" class="content" [innerHTML] ="data.content.rendered |  safe: 'html'">
+    </div>
+
+    </ion-card-content>
+    
+  </div>
+</div>
+
+  </ion-card>
+
+</ion-content>

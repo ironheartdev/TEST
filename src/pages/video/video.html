@@ -1,0 +1,54 @@
+<!--
+  Generated template for the VideoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title >Facebook Video</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #container >
+<ion-list  *ngFor="let data of videos">
+  <ion-item (tap)="playvideo(data.source)">
+    <ion-thumbnail item-start>
+
+        
+            <img style="width: 100px; height:70px;" *ngIf="data.picture" (tap)="playvideo(data.source)" [defaultImage]="'assets/default.png'" [lazyLoad]="data.picture" [scrollObservable]="container.ionScroll"/>
+
+    
+    </ion-thumbnail>
+    <h4>{{data.description}}</h4>
+    <p>{{data.created_time | moment}}</p>
+    <button ion-button clear item-end (tap)="playvideo(data.source)">
+      <ion-icon name="play"></ion-icon>
+    </button>
+  </ion-item>
+ 
+       
+  
+
+
+
+<!--     
+      <div class="videoContainer">
+        
+        <img src="assets/video-logo.png" class="livelogo" />
+        <img src="assets/button.png" alt="play" class="playBtn" (tap)="playvideo(data.source)" />
+      </div> -->
+
+
+
+
+</ion-list> 
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content>
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

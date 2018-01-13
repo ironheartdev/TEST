@@ -1,0 +1,57 @@
+
+<ion-menu  [content]="content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title style="font-family: 'Hanuman';">Menu</ion-title>
+      <ion-buttons start>
+        <button *ngIf="isHome" menuClose ion-button icon-only (click)="openHome()">
+          <ion-icon name="home"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content color="primary">
+  <img src="assets/logo.png">
+    <ion-list>
+      <button style="font-family: 'Hanuman';" color="primary" menuClose ion-item (click)="openHome()">
+         <ion-icon name="home"  item-left></ion-icon>
+        ព័ត៌មានថ្មីៗ
+      </button>
+      <button color="primary" menuClose ion-item (click)="openVideo()" >
+        <ion-icon name="videocam"  item-left></ion-icon>
+       Facebook Video
+     </button>
+      <button color="primary" menuClose ion-item (click)="openpage()" >
+         <ion-icon name="logo-facebook"  item-left></ion-icon>
+        Facebook
+      </button>
+     
+  
+      <button style="font-family: 'Hanuman';" color="primary" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+         <ion-icon *ngIf="p.id == 29" name="git-branch"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 35" name="paper"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 34" name="chatboxes"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 33" name="analytics"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 31" name="brush"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 30" name="cog"  item-left></ion-icon>
+          <ion-icon *ngIf="p.id == 32" name="ios-football-outline"  item-left></ion-icon>
+        {{p.title}}
+
+      </button>
+      <button style="font-family: 'Hanuman';" color="primary" menuClose ion-item (click)="openAbout()">
+         <ion-icon name="people"  item-left></ion-icon>
+        ​អំពីយើង
+      </button>
+    </ion-list>
+    <div *ngFor="let adss of ads">
+    <!-- <a href="{{adss.ads_url}}" onclick="window.open.href('_blank', 'location=no,hardwareback=yes')"> -->
+    <img (click)="openads(adss.ads_url)" style="border-bottom: solid 1px;" src="{{adss.img_url}}"/>
+    <!-- </a> -->
+  </div>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,40 @@
+// http://ionicframework.com/docs/v2/theming/
+@import url('https://fonts.googleapis.com/css?family=Hanuman');
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+img{
+  max-width:100% !important;
+    height:auto;
+    display:block;
+}
+
+
+
+p,ion-card-title{
+  font-family: 'Hanuman';
+}
+
+
+  .scroll-content{
+      background-color: #00338E;
+  }
+
+
+//Design Social
+/*!
+ * Socializer - CSS library for social media buttons
+ * Copyright (c) 2016 Aakash Chakravarthy - www.aakashweb.com
+ * MIT license
+ */

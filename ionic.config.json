@@ -1,0 +1,8 @@
+{
+  "name": "world",
+  "app_id": "dd0ccb45",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
